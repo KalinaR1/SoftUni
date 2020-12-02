@@ -1,0 +1,13 @@
+text = input()
+lst = list(text)
+lowers = []
+
+for letter in lst:
+    lowers.append(letter.lower())
+
+separator = ""
+joined = separator.join(lowers)
+
+total = joined.count("sun") + joined.count("water") + joined.count("sand") + joined.count("fish")
+
+print(total)
