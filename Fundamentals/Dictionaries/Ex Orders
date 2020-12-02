@@ -1,0 +1,18 @@
+result_products = {}
+
+command = input()
+while not command == "buy":
+    name, price, quantity = command.split()
+    price = float(price)
+    quantity = int(quantity)
+    if name in result_products:
+        result_products[name] = [result_products[name][0] + quantity, price]
+    else:
+        result_products[name] = [quantity, price]
+    command = input()
+
+for key, value in result_products.items():
+    result_products[key] = (value[0] * value[1])
+
+for key, value in result_products.items():
+    print(f'{key} -> {value:.2f}')
