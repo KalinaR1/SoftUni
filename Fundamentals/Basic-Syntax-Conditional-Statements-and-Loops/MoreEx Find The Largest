@@ -1,0 +1,14 @@
+number = input()
+
+number_lst = list(number)
+num_lst = []
+
+for num in number_lst:
+    num = int(num)
+    num_lst.append(num)
+
+num_lst.sort(reverse=True)
+strings = [str(el) for el in num_lst]
+a_string = "".join(strings)
+
+print(int(a_string))
