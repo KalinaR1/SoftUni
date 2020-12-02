@@ -1,0 +1,17 @@
+first_number = int(input())
+second_number = int(input())
+
+
+def factorial():
+    first_result = 1
+    second_result = 1
+    total_result = 0
+    for n in range(first_number, 0, -1):
+        first_result = first_result * n
+    for n in range(second_number, 0, -1):
+        second_result = second_result * n
+    total_result = first_result / second_result
+    return total_result
+
+
+print(f"{factorial():.2f}")
