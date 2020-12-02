@@ -1,0 +1,13 @@
+line = input()
+n = int(input())
+
+line_lst = line.split(" ")
+integers = []
+
+for num in line_lst:
+    integers.append(int(num))
+
+for iteration in range(n):
+    integers.remove(min(integers))
+
+print(integers)
