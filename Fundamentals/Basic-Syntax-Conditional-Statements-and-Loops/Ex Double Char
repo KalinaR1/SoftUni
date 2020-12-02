@@ -1,0 +1,4 @@
+string = input()
+
+for index in range(0, len(string)):
+    print(f"{string[index]}{string[index]}", end='')
