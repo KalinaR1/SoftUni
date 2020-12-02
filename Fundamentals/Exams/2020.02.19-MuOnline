@@ -1,0 +1,39 @@
+dungeons_rooms = [el for el in input().split("|")]
+
+health = 100
+bitcoins = 0
+room_count = 0
+
+for room in dungeons_rooms:
+    room_count += 1
+    new = room.split(" ")
+    command = new[0]
+    number = int(new[1])
+
+    if command == "potion":
+        if health < 100:
+            health += number
+            if health > 100:
+                print(f"You healed for {100 - (health - number)} hp.")
+                health = 100
+            elif health <= 100:
+                print(f"You healed for {number} hp.")
+        elif health == 100:
+            continue
+        print(f"Current health: {health} hp.")
+    elif command == "chest":
+        bitcoins += number
+        print(f"You found {number} bitcoins.")
+    else:
+        if health - number <= 0 or health <= 0:
+            print(f"You died! Killed by {command}.")
+            print(f"Best room: {room_count}")
+            break
+        else:
+            health -= number
+            print(f"You slayed {command}.")
+
+if room_count == len(dungeons_rooms):
+    print(f"You've made it!")
+    print(f"Bitcoins: {bitcoins}")
+    print(f"Health: {health}")
