@@ -1,0 +1,12 @@
+string = list(input())
+
+occurrences = {}
+value = 0
+for index in range(len(string)):
+    if not string[index] == " ":
+        char = string[index]
+        occurrences[char] = string.count(string[index])
+
+
+for key, value in occurrences.items():
+    print(f'{key} -> {value}')
