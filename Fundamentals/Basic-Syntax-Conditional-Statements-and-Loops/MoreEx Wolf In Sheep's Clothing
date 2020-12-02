@@ -1,0 +1,13 @@
+animals = input().split(", ")
+
+if animals[-1] == "wolf":
+    print(f"Please go away and stop eating my sheep")
+else:
+    for animal in animals:
+        if animal == "sheep":
+            continue
+
+        if animal == "wolf":
+            index = int(animals.index("wolf"))
+            print(f"Oi! Sheep number {len(animals) - index - 1}! You are about to be eaten by a wolf!")
+            break
