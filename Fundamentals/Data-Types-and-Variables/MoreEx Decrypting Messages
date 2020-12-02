@@ -1,0 +1,12 @@
+key = int(input())
+interval = int(input())
+
+decrypted = []
+
+for num in range(interval):
+    char = ord(input())
+    new_letter = chr(char + key)
+    decrypted.append(new_letter)
+
+joined = "".join(decrypted)
+print(joined)
