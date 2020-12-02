@@ -1,0 +1,8 @@
+import math
+
+number = int(input())
+capacity = int(input())
+
+full_courses = math.ceil(number / capacity)
+
+print(f"{full_courses}")
