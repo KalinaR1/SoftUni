@@ -1,0 +1,3 @@
+text = list(input())
+encrypted = [chr(ord(w) + 3) for w in text]
+print(f'{"".join(encrypted)}')
