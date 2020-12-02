@@ -1,0 +1,31 @@
+fires = input().split("#")
+water = int(input())
+
+RANGE_HIGH = range(81, 126)
+RANGE_MEDIUM = range(51, 81)
+RANGE_LOW = range(1, 51)
+
+effort = 0
+total_fire = 0
+cells = []
+for fire in fires:
+    fire_type, cell_value = fire.split(" = ")
+    cell_value = int(cell_value)
+    if fire_type == "High" and cell_value not in RANGE_HIGH:
+        continue
+    elif fire_type == "Medium" and cell_value not in RANGE_MEDIUM:
+        continue
+    elif fire_type == "Low" and cell_value not in RANGE_LOW:
+        continue
+    if water < cell_value:
+        continue
+    water -= cell_value
+    effort += 0.25 * cell_value
+    total_fire += cell_value
+    cells.append(cell_value)
+
+print('Cells:')
+for cell in cells:
+    print(f' - {cell}')
+print(f"Effort: {effort:.2f}")
+print(f"Total Fire: {round(total_fire)}")
