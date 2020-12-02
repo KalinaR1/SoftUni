@@ -1,0 +1,14 @@
+first_char = input()
+second_char = input()
+
+
+def chars_in_range():
+    result = []
+    for char in range(ord(first_char) + 1, ord(second_char)):
+        char = chr(char)
+        result.append(char)
+        joined = " ".join(result)
+    return joined
+
+
+print(chars_in_range())
