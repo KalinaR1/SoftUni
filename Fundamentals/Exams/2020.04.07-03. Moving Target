@@ -1,0 +1,29 @@
+targets = [int(_) for _ in input().split()]
+
+command = input()
+shot_targets = 0
+while not command == "End":
+    data = command.split()
+    command_type = data[0]
+    index = int(data[1])
+    if command_type == "Shoot":
+        power = int(data[2])
+        if index in range(len(targets)):
+            targets[index] -= power
+            if targets[index] <= 0:
+                shot_targets += 1
+                targets.remove(targets[index])
+    elif command_type == "Add":
+        value = int(data[2])
+        if index in range(len(targets)):
+            targets.insert(index, value)
+        else:
+            print("Invalid placement!")
+    elif command_type == "Strike":
+        radius = int(data[2])
+        if index + radius in range(len(targets)) and index - radius in range(len(targets)):
+            targets = targets[:index - radius] + targets[(index + radius) + 1:]
+        else:
+            print("Strike missed!")
+    command = input()
+print("|".join([str(_) for _ in targets]))
