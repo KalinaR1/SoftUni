@@ -1,0 +1,20 @@
+def time_step(lst):
+    time_total = 0
+    for n in lst:
+        if n == 0:
+            time_total *= 0.8
+            continue
+        time_total += n
+    return time_total
+
+
+times = [int(_) for _ in input().split()]
+
+middle_index = (len(times)//2) + 1
+left_racer_lst = times[:middle_index - 1]
+right_racer_lst = (times[:middle_index - 1:-1])
+
+if time_step(left_racer_lst) < time_step(right_racer_lst):
+    print(f"The winner is left with total time: {time_step(left_racer_lst):.1f}")
+else:
+    print(f"The winner is right with total time: {time_step(right_racer_lst):.1f}")
