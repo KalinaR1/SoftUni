@@ -1,0 +1,36 @@
+initial_array = [int(el) for el in input().split(" ")]
+
+
+def swap(array, i_1, i_2):
+    array[index_1], array[i_2] = array[i_2], array[i_1]
+    return array
+
+
+def multiply(array, i_1, i_2):
+    result = array[i_1] * array[i_2]
+    array[i_1] = result
+    return array
+
+
+data = input().split(" ")
+while not data == "end":
+    if str(data[0]) == "end":
+        break
+    command = data[0]
+
+    if command == "swap":
+        index_1 = int(data[1])
+        index_2 = int(data[2])
+        swap(initial_array, index_1, index_2)
+    elif command == "multiply":
+        index_1 = int(data[1])
+        index_2 = int(data[2])
+        multiply(initial_array, index_1, index_2)
+    elif command == "decrease":
+        initial_array = [(num - 1)for num in initial_array]
+
+    data = input().split(" ")
+
+
+initial_array = [str(el) for el in initial_array]
+print(", ". join(initial_array))
