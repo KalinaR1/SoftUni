@@ -1,0 +1,46 @@
+materials = {}
+key_materials = {"fragments": 0, "shards": 0, "motes": 0}
+junk = {}
+lst = input().split()
+is_obtained = False
+while True:
+    for i in range(0, len(lst), 2):
+        item = lst[i + 1].lower()
+        quantity = int(lst[i])
+        if item in materials:
+            materials[item] += quantity
+        else:
+            materials[item] = quantity
+        if item == 'motes' and materials[item] >= 250:
+            materials[item] -= 250
+            print('Dragonwrath obtained!')
+            is_obtained = True
+            break
+        elif item == 'shards' and materials[item] >= 250:
+            materials[item] -= 250
+            print('Shadowmourne obtained!')
+            is_obtained = True
+            break
+        elif item == 'fragments' and materials[item] >= 250:
+            materials[item] -= 250
+            print('Valanyr obtained!')
+            is_obtained = True
+            break
+    if is_obtained:
+        break
+    lst = input().split()
+
+for key, value in materials.items():
+    if key in key_materials:
+        key_materials[key] = value
+    else:
+        junk[key] = value
+
+key_materials = sorted(key_materials.items(), key=lambda x: (-x[1], x[0]))
+junk = sorted(junk.items(), key=lambda x: x[0])
+
+
+for key, value in key_materials:
+    print(f'{key}: {value}')
+for key, value in junk:
+    print(f'{key}: {value}')
