@@ -1,0 +1,78 @@
+def cast_spell(dict, hero, mp_needed, spell_name):
+    if dict[hero][1] >= mp_needed:
+        dict[hero][1] -= mp_needed
+        print(f"{hero} has successfully cast {spell_name} and now has {dict[hero][1]} MP!")
+    else:
+        print(f"{hero} does not have enough MP to cast {spell_name}!")
+    return dict
+
+
+def take_damage(dict, hero, damage, attacker):
+    dict[hero][0] -= damage
+    if dict[hero][0] > 0:
+        print(f"{hero} was hit for {damage} HP by {attacker} and now has {dict[hero][0]} HP left!")
+    else:
+        print(f"{hero} has been killed by {attacker}!")
+    return dict
+
+
+def recharge(dict, hero, amount):
+    if dict[hero][1] + amount > max_mana:
+        print(f"{hero} recharged for {max_mana - dict[hero][1]} MP!")
+        dict[hero][1] = max_mana
+    else:
+        dict[hero][1] += amount
+        print(f"{hero} recharged for {amount} MP!")
+    return dict
+
+
+def heal(dict, hero, amount):
+    if dict[hero][0] + amount > max_hit:
+        print(f"{hero} healed for {max_hit - dict[hero][0]} HP!")
+        dict[hero][0] = max_hit
+    else:
+        dict[hero][0] += amount
+        print(f"{hero} healed for {amount} HP!")
+    return dict
+
+
+n = int(input())
+
+max_hit = 100
+max_mana = 200
+
+hero_hp_mp = {}
+for _ in range(n):
+    line = input().split()
+    name = line[0]
+    hit_points = int(line[1])
+    mana_points = int(line[2])
+    if name not in hero_hp_mp:
+        hero_hp_mp[name] = [hit_points, mana_points]
+
+command = input()
+while not command == "End":
+    data = command.split(" - ")
+    action = data[0]
+    hero = data[1]
+    if action == "CastSpell":
+        mp_needed = int(data[2])
+        spell_name = data[3]
+        cast_spell(hero_hp_mp, hero, mp_needed, spell_name)
+    elif action == "TakeDamage":
+        damage = int(data[2])
+        attacker = data[3]
+        take_damage(hero_hp_mp, hero, damage, attacker)
+    elif action == "Recharge":
+        amount = int(data[2])
+        recharge(hero_hp_mp, hero, amount)
+    elif action == "Heal":
+        amount = int(data[2])
+        heal(hero_hp_mp, hero, amount)
+    command = input()
+
+for hero, points in sorted(hero_hp_mp.items(), key=lambda x: (-x[1][0], x[0])):
+    if points[0] > 0:
+        print(hero)
+        print(f"  HP: {points[0]}")
+        print(f"  MP: {points[1]}")
