@@ -1,0 +1,19 @@
+n_lines = int(input())
+
+lst_all = []
+opening = 0
+
+for line in range(n_lines):
+    num = input()
+    lst_all.append(num)
+    if num == '(':
+        opening += 1
+    if num == ')':
+        opening = 0
+    if opening == 2:
+        break
+
+if lst_all.count("(") == lst_all.count(")"):
+    print(f"BALANCED")
+else:
+    print(f"UNBALANCED")
