@@ -1,0 +1,57 @@
+def adding(pieces, piece, composer, key):
+    if piece not in pieces:
+        pieces[piece] = [composer, key]
+        print(f"{piece} by {composer} in {key} added to the collection!")
+    else:
+        print(f"{piece} is already in the collection!")
+    return pieces
+
+
+def removing(pieces, piece):
+    if piece in pieces:
+        pieces.pop(piece)
+        print(f"Successfully removed {piece}!")
+    else:
+        print(f"Invalid operation! {piece} does not exist in the collection.")
+    return pieces
+
+
+def change_key(pieces, piece, new_key):
+    if piece in pieces:
+        pieces[piece][1] = new_key
+        print(f"Changed the key of {piece} to {new_key}!")
+    else:
+        print(f"Invalid operation! {piece} does not exist in the collection.")
+    return pieces
+
+
+number_pieces = int(input())
+
+pieces = {}
+for _ in range(number_pieces):
+    line = input().split("|")
+    piece = line[0]
+    composer = line[1]
+    key = line[2]
+    pieces[piece] = [composer, key]
+
+command = input()
+while not command == "Stop":
+    data = command.split("|")
+    command_type = data[0]
+    if command_type == "Add":
+        piece = data[1]
+        composer = data[2]
+        key = data[3]
+        pieces = adding(pieces, piece, composer, key)
+    elif command_type == "Remove":
+        piece = data[1]
+        removing(pieces, piece)
+    elif command_type == "ChangeKey":
+        piece = data[1]
+        new_key = data[2]
+        change_key(pieces, piece, new_key)
+    command = input()
+
+for piece, composer_key in sorted(pieces.items(), key=lambda x: (x[0], x[1][0])):
+    print(f"{piece} -> Composer: {composer_key[0]}, Key: {composer_key[1]}")
