@@ -1,0 +1,22 @@
+n_rows = int(input())
+
+total_ships = []
+ships_destroyed = 0
+for num in range(n_rows):
+    ships = [int(el) for el in input().split()]
+    total_ships.append(ships)
+
+attacked_squares = input().split()
+for square in attacked_squares:
+    attack = square.split("-")
+    row = int(attack[0])
+    column = int(attack[1])
+    if total_ships[row][column] < 1:
+        continue
+    elif total_ships[row][column] > 1:
+        total_ships[row][column] -= 1
+    elif total_ships[row][column] == 1:
+        total_ships[row][column] -= 1
+        ships_destroyed += 1
+
+print(ships_destroyed)
