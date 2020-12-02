@@ -1,0 +1,9 @@
+first_number = int(input())
+second_number = int(input())
+
+multiples = []
+
+for num in range(first_number, (second_number*first_number) + 1):
+    if num % first_number == 0:
+        multiples.append(num)
+print(multiples)
