@@ -1,0 +1,60 @@
+def drive(cars, car, distance, fuel):
+    if cars[car][1] >= fuel:
+        cars[car][0] += distance
+        cars[car][1] -= fuel
+        print(f"{car} driven for {distance} kilometers. {fuel} liters of fuel consumed.")
+    else:
+        print("Not enough fuel to make that ride")
+    if cars[car][0] >= 100000:
+        print(f"Time to sell the {car}!")
+        cars.pop(car)
+    return cars
+
+
+def refuel(cars, car, fuel):
+    if cars[car][1] + fuel > 75:
+        print(f"{car} refueled with {75 - cars[car][1]} liters")
+        cars[car][1] = 75
+    else:
+        cars[car][1] += fuel
+        print(f"{car} refueled with {fuel} liters")
+    return cars
+
+
+def revert(cars, car, km):
+    cars[car][0] -= km
+    print(f"{car} mileage decreased by {km} kilometers")
+    if cars[car][0] < 10000:
+        cars[car][0] = 10000
+    return cars
+
+
+n = int(input())
+
+cars = {}
+for _ in range(n):
+    line = input().split("|")
+    car = line[0]
+    mileage = int(line[1])
+    fuel = int(line[2])
+    cars[car] = [mileage, fuel]
+
+command = input()
+while not command == "Stop":
+    data = command.split(" : ")
+    action = data[0]
+    car = data[1]
+    if action == "Drive":
+        distance = int(data[2])
+        fuel = int(data[3])
+        cars = drive(cars, car, distance, fuel)
+    elif action == "Refuel":
+        fuel = int(data[2])
+        cars = refuel(cars, car, fuel)
+    elif action == "Revert":
+        km = int(data[2])
+        cars = revert(cars, car, km)
+    command = input()
+
+for car, mileage_fuel in sorted(cars.items(), key=lambda x: (-x[1][0], x[0])):
+    print(f"{car} -> Mileage: {mileage_fuel[0]} kms, Fuel in the tank: {mileage_fuel[1]} lt.")
