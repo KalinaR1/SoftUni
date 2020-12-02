@@ -1,0 +1,19 @@
+targets = [int(el) for el in input().split(" ")]
+
+shot_count = 0
+data = input()
+while not data == "End":
+    index = int(data)
+    if 0 <= index + 1 <= len(targets):
+        shot_count += 1
+        shot = targets[index]
+        targets.pop(index)
+        for target in range(0, len(targets)):
+            if targets[target] > shot and not targets[target] == -1:
+                targets[target] -= shot
+            elif targets[target] <= shot and not targets[target] == -1:
+                targets[target] += shot
+        targets.insert(index, -1)
+    data = input()
+
+print(f"Shot targets: {shot_count} -> {' '.join([str(el) for el in targets])}")
