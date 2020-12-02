@@ -1,0 +1,10 @@
+numbers = input()
+
+opposites = []
+
+numbers_lst = numbers.split(" ")
+
+for num in numbers_lst:
+    num = -int(num)
+    opposites.append(num)
+print(opposites)
