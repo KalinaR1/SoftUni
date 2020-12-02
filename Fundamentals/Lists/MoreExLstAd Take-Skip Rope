@@ -1,0 +1,30 @@
+string = list(input())
+
+numbers_lst = []
+non_numbers_lst = []
+for el in string:
+    if el.isdigit():
+        numbers_lst.append(int(el))
+    else:
+        non_numbers_lst.append(el)
+
+result = []
+skipped = []
+for index in range(len(numbers_lst)):
+    if not non_numbers_lst:
+        break
+    if index % 2 == 0:
+        for num in range(numbers_lst[index]):
+            result.append(non_numbers_lst[0])
+            non_numbers_lst.remove(non_numbers_lst[0])
+            if not non_numbers_lst:
+                break
+
+    else:
+        for num in range(numbers_lst[index]):
+            skipped.append(non_numbers_lst[0])
+            non_numbers_lst.remove(non_numbers_lst[0])
+            if not non_numbers_lst:
+                break
+
+print("".join(result))
