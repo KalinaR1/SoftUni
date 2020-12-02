@@ -1,0 +1,11 @@
+numbers_as_string = input().split(", ")
+numbers = list(map(int, numbers_as_string))
+
+for el in numbers:
+    if el == 0:
+        numbers.remove(el)
+        numbers.append(0)
+    else:
+        continue
+
+print(numbers)
