@@ -1,0 +1,56 @@
+items = input().split(", ")
+
+
+def item_exists(items_list, i):
+    if i in items:
+        return True
+    else:
+        return False
+
+
+def collect(items_list, i):
+    if not item_exists(items_list, i):
+        items_list.append(i)
+    return items_list
+
+
+def drop(items_list, i):
+    if item_exists(items_list, i):
+        items_list.remove(i)
+    return items_list
+
+
+def combine(items_list, i):
+    old_i = i.split(":")[0]
+    new_i = i.split(":")[1]
+    if item_exists(items_list, old_i):
+        old_i_index = items_list.index(old_i)
+        new_i_index = old_i_index + 1
+        items_list.insert(new_i_index, new_i)
+    return items_list
+
+
+def renew(items_list, i):
+    if item_exists(items_list, i):
+        items_list.remove(i)
+        items_list.append(i)
+    return items_list
+
+
+command = input()
+while not command == "Craft!":
+    command_type = command.split(" - ")[0]
+    item = command.split(" - ")[1]
+
+    if command_type == "Collect":
+        items = collect(items, item)
+    elif command_type == "Drop":
+        items = drop(items, item)
+    elif command_type == "Combine Items":
+        combine(items, item)
+    elif command_type == "Renew":
+        renew(items, item)
+
+    command = input()
+
+print(", ".join(items))
