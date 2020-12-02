@@ -1,0 +1,26 @@
+first_line = input().split()
+second_line = input().split()
+third_line = input().split()
+all_lines_int = list(map(int, (first_line + second_line + third_line)))
+
+if (all_lines_int[0] == 1 and all_lines_int[1] == 1 and all_lines_int[2] == 1) \
+        or (all_lines_int[3] == 1 and all_lines_int[4] == 1 and all_lines_int[5] == 1) \
+        or (all_lines_int[6] == 1 and all_lines_int[7] == 1 and all_lines_int[8] == 1) \
+        or (all_lines_int[0] == 1 and all_lines_int[3] == 1 and all_lines_int[6] == 1) \
+        or (all_lines_int[1] == 1 and all_lines_int[4] == 1 and all_lines_int[7] == 1) \
+        or (all_lines_int[2] == 1 and all_lines_int[5] == 1 and all_lines_int[8] == 1) \
+        or (all_lines_int[0] == 1 and all_lines_int[4] == 1 and all_lines_int[8] == 1) \
+        or (all_lines_int[2] == 1 and all_lines_int[4] == 1 and all_lines_int[6] == 1):
+    print("First player won")
+
+elif (all_lines_int[0] == 2 and all_lines_int[1] == 2 and all_lines_int[2] == 2) \
+        or (all_lines_int[3] == 2 and all_lines_int[4] == 2 and all_lines_int[5] == 2) \
+        or (all_lines_int[6] == 2 and all_lines_int[7] == 2 and all_lines_int[8] == 2) \
+        or (all_lines_int[0] == 2 and all_lines_int[3] == 2 and all_lines_int[6] == 2) \
+        or (all_lines_int[1] == 2 and all_lines_int[4] == 2 and all_lines_int[7] == 2) \
+        or (all_lines_int[2] == 2 and all_lines_int[5] == 2 and all_lines_int[8] == 2) \
+        or (all_lines_int[0] == 2 and all_lines_int[4] == 2 and all_lines_int[8] == 2) \
+        or (all_lines_int[2] == 2 and all_lines_int[4] == 2 and all_lines_int[6] == 2):
+    print("Second player won")
+else:
+    print("Draw!")
