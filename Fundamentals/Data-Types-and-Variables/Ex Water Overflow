@@ -1,0 +1,12 @@
+number_of_lines = int(input())
+
+litres = 0
+
+for line in range(number_of_lines):
+    quantities_of_water = int(input())
+    litres += quantities_of_water
+    if litres > 255:
+        litres -= quantities_of_water
+        print(f"Insufficient capacity!")
+
+print(f"{litres}")
