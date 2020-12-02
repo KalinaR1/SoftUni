@@ -1,0 +1,19 @@
+n_pairs_rows = int(input())
+students = {}
+
+for n in range(0, n_pairs_rows):
+    name = input()
+    grade = float(input())
+    if name not in students:
+        students[name] = [grade]
+    else:
+        students[name] += [grade]
+
+for student, average_grade in students.items():
+    students[student] = sum(average_grade) / len(average_grade)
+
+students = sorted(students.items(), key=lambda x: x[1], reverse=True)
+
+for student, average_grade in students:
+    if average_grade >= 4.5:
+        print(f'{student} -> {average_grade:.2f}')
