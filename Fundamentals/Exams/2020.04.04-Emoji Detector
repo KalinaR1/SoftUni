@@ -1,0 +1,29 @@
+import re
+
+string = input()
+
+digits = re.findall(r"\d", string)
+
+pattern = r"(:{2}|\*{2})([A-Z][a-z]{2,})(\1)"
+
+cool_threshold = 1
+for digit in digits:
+    cool_threshold *= int(digit)
+
+possible_emojis = re.findall(pattern, string)
+possible_emojis_new = [emoji[1] for emoji in possible_emojis]
+
+valid_emojis = []
+sum_emoji = 0
+for emoji in possible_emojis:
+    sum_emoji = sum([ord(el) for el in emoji[1]])
+    if sum_emoji >= cool_threshold:
+        valid_emojis.append("".join(emoji))
+        sum_emoji = 0
+
+print(f"Cool threshold: {cool_threshold}")
+print(f"{len(possible_emojis)} emojis found in the text. The cool ones are:")
+
+for em in valid_emojis:
+    print(f"{em}")
+
