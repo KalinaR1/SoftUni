@@ -1,0 +1,19 @@
+line = input().split()
+
+total_sum = 0
+for element in line:
+    before_letter = (element[0])
+    after_letter = element[-1]
+    number = int(element[1:-1])
+    before_letter_position = ord(before_letter.lower()) - 96
+    after_letter_position = ord(after_letter.lower()) - 96
+    if before_letter.isupper():
+        total_sum += number / before_letter_position
+    elif before_letter.islower():
+        total_sum += number * before_letter_position
+    if after_letter.isupper():
+        total_sum -= after_letter_position
+    elif after_letter.islower():
+        total_sum += after_letter_position
+
+print(f"{total_sum:.2f}")
