@@ -1,0 +1,25 @@
+numbers = input().split()
+string = list(input())
+
+sum_nums = 0
+result = []
+for num in numbers:
+    lst = list(num)
+    for el in lst:
+        sum_nums += int(el)
+    result.append(sum_nums)
+    sum_nums = 0
+
+end_result = []
+for index in result:
+    if 0 <= index <= len(string):
+        char = string[index]
+        end_result.append(char)
+        string.remove(string[index])
+    else:
+        new_index = index - len(string)
+        char = string[new_index]
+        end_result.append(char)
+        string.remove(string[new_index])
+
+print("".join(end_result))
