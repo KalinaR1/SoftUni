@@ -1,0 +1,16 @@
+line = input()
+
+coffee_count = 0
+
+while not line == 'END':
+    if line == 'dog' or line == 'cat' or line == 'movie' or line == 'coding':
+        coffee_count += 1
+
+    if line == 'DOG' or line == 'CAT' or line == 'MOVIE' or line == 'CODING':
+        coffee_count += 2
+
+    line = input()
+if coffee_count < 6:
+    print(coffee_count)
+elif coffee_count >= 6:
+    print(f"You need extra sleep")
