@@ -1,0 +1,13 @@
+string = input()
+
+RANGE_CAPITALS = range(65, 91)
+# string_lst = list(string)
+uppers = []
+
+for i in range(len(string)):
+    if ord(string[i]) not in RANGE_CAPITALS:
+        continue
+    else:
+        uppers.append(i)
+
+print(uppers)
