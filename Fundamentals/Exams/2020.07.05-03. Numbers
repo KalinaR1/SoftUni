@@ -1,0 +1,17 @@
+numbers = [int(el) for el in input().split(" ")]
+average = sum(numbers)/len(numbers)
+new = []
+
+for num in numbers:
+    if len(numbers) == 1:
+        print("No")
+        break
+    if num > average:
+        new.append(num)
+
+new.sort(reverse=True)
+new_lst = new[0:5]
+new_2 = [str(el) for el in new_lst]
+
+
+print(" ".join(new_2))
