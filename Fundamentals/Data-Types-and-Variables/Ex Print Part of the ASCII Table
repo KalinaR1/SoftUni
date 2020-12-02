@@ -1,0 +1,6 @@
+number_1 = int(input())
+number_2 = int(input())
+
+
+for num in range(number_1, number_2 + 1):
+    print(f"{chr(num)}", end= ' ')
