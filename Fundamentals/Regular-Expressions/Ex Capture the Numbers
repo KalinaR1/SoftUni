@@ -1,0 +1,16 @@
+import re
+
+all_lines = []
+
+data = input()
+while data:
+    all_lines.append(data)
+    data = input()
+
+pattern = r"\d+"
+
+new = " ".join(all_lines)
+
+numbers = re.findall(pattern, new)
+
+print(" ".join(numbers))
