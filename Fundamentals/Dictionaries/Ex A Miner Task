@@ -1,0 +1,18 @@
+collect = {}
+resources = []
+command = input()
+while not command == "stop":
+    resources.append(command)
+    command = input()
+
+for index in range(0, len(resources), 2):
+    resource = resources[index]
+    quantity = int(resources[index + 1])
+
+    if resource in collect:
+        collect[resource] += quantity
+    else:
+        collect[resource] = quantity
+
+for key, value in collect.items():
+    print(f'{key} -> {value}')
