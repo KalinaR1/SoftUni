@@ -1,0 +1,15 @@
+positive_ints = input().split(", ")
+
+
+def palindrome_ints():
+    res = ""
+    for el in positive_ints:
+        lst = list(el)
+        new = list(reversed(lst))
+        if lst == new:
+            print("True")
+        else:
+            print("False")
+
+
+palindrome_ints()
