@@ -1,0 +1,36 @@
+items_prices = input().split("|")
+budget = float(input())
+
+MAX_CLOTHES = 50
+MAX_SHOES = 35
+MAX_ACCESSORIES = 20.5
+TRAIN_TICKETS = 150
+bought_items = []
+overall_profit = 0
+
+for item in items_prices:
+    current_item, current_price = item.split("->")
+    current_price = float(current_price)
+
+    if current_item == "Clothes" and current_price > MAX_CLOTHES:
+        continue
+    elif current_item == "Shoes" and current_price > MAX_SHOES:
+        continue
+    elif current_item == "Accessories" and current_price > MAX_ACCESSORIES:
+        continue
+    if budget >= current_price:
+        budget -= current_price
+        current_profit = current_price * 0.4
+        overall_profit += current_profit
+        bought_items.append(current_profit + current_price)
+
+for el in bought_items:
+    print(f'{el:.2f}', end=" ")
+
+print()
+print(f'Profit: {overall_profit:.2f}')
+
+if (sum(bought_items) + budget) >= TRAIN_TICKETS:
+    print(f'Hello, France!')
+else:
+    print(f'Time to go.')
