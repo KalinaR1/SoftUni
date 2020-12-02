@@ -1,0 +1,9 @@
+number_of_lines = int(input())
+
+result = 0
+
+for letter in range(1, number_of_lines + 1):
+    latin_letters = input()
+    result += ord(latin_letters)
+
+print(f"The sum equals: {result}")
