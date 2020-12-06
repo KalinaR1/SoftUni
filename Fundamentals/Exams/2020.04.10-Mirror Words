@@ -1,0 +1,31 @@
+import re
+
+string = input()
+
+pattern = r"(@|#)([A-Za-z]{3,})\1{2}([A-Za-z]{3,})\1"
+
+result = re.findall(pattern, string)
+
+valid = []
+if result:
+    for word in result:
+        if word[1] == word[2][::-1]:
+            valid.append([word[1], word[2]])
+else:
+    print("No word pairs found!")
+    print("No mirror words!")
+
+if valid:
+    print(f"{len(result)} word pairs found!")
+    print("The mirror words are:")
+    mirror = ''
+    for el in range(len(valid)):
+        if el == len(valid) - 1:
+            print(' <=> '.join(valid[el]))
+        else:
+            print(' <=> '.join(valid[el]), end=", ")
+
+if not valid and result:
+    print(f"{len(result)} word pairs found!")
+    print("No mirror words!")
+
