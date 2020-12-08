@@ -9,8 +9,8 @@ while line:
         length = int(result[0][2])
         encrypted_code = result[0][3]
         if length == len(encrypted_code):
-            decripted_code = [chr(ord(_) + length) for _ in encrypted_code]
-            print(f"Coordinates found! {name} -> {''.join(decripted_code)}")
+            decrypted_code = [chr(ord(_) + length) for _ in encrypted_code]
+            print(f"Coordinates found! {name} -> {''.join(decrypted_code)}")
     else:
         print("Nothing found!")
     line = input()
