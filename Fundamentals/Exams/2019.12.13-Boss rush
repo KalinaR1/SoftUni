@@ -1,0 +1,15 @@
+import re
+
+n = int(input())
+pattern = r"\|([A-Z]{4,})\|:#([A-Za-z]+\s[A-Za-z]+)#"
+for num in range(n):
+    line = input()
+    result = re.findall(pattern, line)
+    if result:
+        boss_name = result[0][0]
+        title = result[0][1]
+        print(f"{boss_name}, The {title}")
+        print(f"Strength: {len(boss_name)}")
+        print(f"Armour: {len(title)}")
+    else:
+        print("Access denied!")
