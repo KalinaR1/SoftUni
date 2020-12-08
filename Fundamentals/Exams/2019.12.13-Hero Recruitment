@@ -1,0 +1,32 @@
+line = input()
+heroes = {}
+while not line == "End":
+    data = line.split()
+    command = data[0]
+    hero = data[1]
+    if command == "Enroll":
+        if hero not in heroes:
+            heroes[hero] = []
+        else:
+            print(f"{hero} is already enrolled.")
+    elif command == "Learn":
+        spell = data[2]
+        if hero not in heroes:
+            print(f"{hero} doesn't exist.")
+        elif spell in heroes[hero]:
+            print(f"{hero} has already learnt {spell}.")
+        else:
+            heroes[hero].append(spell)
+    elif command == "Unlearn":
+        spell = data[2]
+        if hero not in heroes:
+            print(f"{hero} doesn't exist.")
+        elif spell not in heroes[hero]:
+            print(f"{hero} doesn't know {spell}.")
+        else:
+            heroes[hero].remove(spell)
+    line = input()
+
+print("Heroes:")
+for hero, spell in sorted(heroes.items(), key=lambda x: (-len(x[1]), x[0])):
+    print(f"== {hero}: {', '.join(spell)}")
