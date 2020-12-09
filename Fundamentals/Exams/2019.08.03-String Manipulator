@@ -1,0 +1,33 @@
+initial_string = input()
+
+line = input()
+while not line == "End":
+    data = line.split()
+    command = data[0]
+    if command == "Translate":
+        char = data[1]
+        replacement = data[2]
+        initial_string = initial_string.replace(char, replacement)
+        print(initial_string)
+    elif command == "Includes":
+        string = data[1]
+        if string in initial_string:
+            print("True")
+        else:
+            print("False")
+    elif command == "Start":
+        string = data[1]
+        print(initial_string.startswith(string))
+    elif command == "Lowercase":
+        initial_string = initial_string.lower()
+        print(initial_string)
+    elif command == "FindIndex":
+        char = data[1]
+        print(initial_string.rindex(char))
+    elif command == "Remove":
+        start_i = int(data[1])
+        count = int(data[2])
+        to_remove = initial_string[start_i:start_i + count]
+        initial_string = initial_string.replace(to_remove, "", 1)
+        print(initial_string)
+    line = input()
