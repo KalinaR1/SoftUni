@@ -15,8 +15,8 @@ while not line == "Sign up":
     elif command == "Reverse":
         start_i = int(data[1])
         end_i = int(data[2])
-        if start_i + end_i in range(0, len(username)):
-            reversing = username[start_i:end_i + 1:-1]
+        if 0 <= start_i <= end_i < len(username):
+            reversing = "".join(reversed(username[start_i:end_i + 1]))
             print(reversing)
     elif command == "Cut":
         substring = data[1]
