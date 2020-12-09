@@ -1,0 +1,38 @@
+import statistics
+
+n = int(input())
+
+plants = {}
+
+for _ in range(n):
+    line = input().split("<->")
+    plant = line[0]
+    rarity = int(line[1])
+    plants[plant] = [0, [0]]
+    plants[plant][0] = rarity
+
+data = input()
+while not data == "Exhibition":
+    spl = data.split(": ")
+    command = spl[0]
+    other = spl[1].split(" - ")
+    plant = other[0]
+    if plant not in plants:
+        print("error")
+    elif command == "Rate":
+        rating = int(other[1])
+        plants[plant][1].append(rating)
+    elif command == "Update":
+        new_rarity = int(other[1])
+        plants[plant][0] = new_rarity
+    elif command == "Reset":
+        plants[plant][1] = [0]
+    else:
+        print("error")
+    data = input()
+
+print("Plants for the exhibition:")
+for plant, rarity_rating in sorted(plants.items(), key=lambda x: (-(x[1][0]), -sum(x[1][1]))):
+    if len(rarity_rating[1]) > 1:
+        rarity_rating[1].remove(0)
+    print(f"- {plant}; Rarity: {rarity_rating[0]}; Rating: {statistics.mean(rarity_rating[1]):.2f}")
