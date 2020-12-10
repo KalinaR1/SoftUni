@@ -1,0 +1,46 @@
+line = input()
+players = {}
+while not line == "Season end":
+    if len(line.split()) > 3:
+        args = line.split(" -> ")
+        player = args[0]
+        position = args[1]
+        skill = int(args[2])
+        if player not in players:
+            players[player] = {}
+            players[player][position] = skill
+        elif player in players and position in players[player].keys():
+            if skill > players[player][position]:
+                players[player] = position
+                players[player][position] = skill
+        else:
+            players[player][position] = skill
+    else:
+        args = line.split(" vs ")
+        player_1 = args[0]
+        player_2 = args[1]
+        if player_1 in players and player_2 in players:
+            for p1 in players[player_1]:
+                for p2 in players[player_2]:
+                    if p1 == p2:
+                        if players[player_1][p1] > players[player_2][p2]:
+                            players.pop(player_2)
+                        elif players[player_1][p1] == players[player_2][p2]:
+                            break
+                        else:
+                            players.pop(player_1)
+    line = input()
+
+result = {}
+total_points = 0
+for player in players.keys():
+    points = sum(players.get(player).values())
+    players[player] = [players[player], points]
+
+for player, position_skill_total in sorted(players.items(), key=lambda x: (-x[1][1], x[0])):
+    total = position_skill_total[1]
+    print(f"{player}: {total} skill")
+    for p in position_skill_total:
+        if type(p) == dict:
+            for position, skill in sorted(p.items(), key=lambda x: (-x[1], x[0])):
+                print(f"- {position} <::> {skill}")
