@@ -1,0 +1,41 @@
+line = input()
+contest_name_points = {}
+while not line == "no more time":
+    args = line.split(" -> ")
+    username = args[0]
+    contest = args[1]
+    points = int(args[2])
+    if contest not in contest_name_points:
+        contest_name_points[contest] = {}
+        contest_name_points[contest][username] = points
+        line = input()
+        continue
+    if username not in contest_name_points[contest]:
+        contest_name_points[contest][username] = points
+        line = input()
+        continue
+    elif username in contest_name_points[contest] and contest in contest_name_points:
+        if points > contest_name_points[contest][username]:
+            contest_name_points[contest][username] = points
+    line = input()
+
+result = {}
+num = 0
+for contest, users in contest_name_points.items():
+    print(f"{contest}: {len(users)} participants")
+    num = 0
+    for el in sorted(users.items(), key=lambda x: (-x[1], x[0])):
+        num += 1
+        name = el[0]
+        points = el[1]
+        print(f"{num}. {name} <::> {points}")
+        if name not in result:
+            result[name] = points
+        else:
+            result[name] += points
+
+print("Individual standings:")
+count = 0
+for user, points in sorted(result.items(), key=lambda x: (-x[1], x[0])):
+    count += 1
+    print(f"{count}. {user} -> {points}")
