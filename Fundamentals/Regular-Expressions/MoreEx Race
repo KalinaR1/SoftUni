@@ -1,0 +1,36 @@
+import re
+
+def int2ordinal(num):
+    num = str(num)
+    if len(num) > 2:
+        end_digits = int(num) % 100
+    else:
+        end_digits = int(num) % 10
+    if end_digits == 1: return (num + "st")
+    if end_digits == 2: return (num + "nd")
+    if end_digits == 3: return (num + "rd")
+    else: return (num + "th")
+
+
+participants = input().split(", ")
+
+p_name = r"[A-Za-z]"
+p_distance = r"\d"
+dict = {}
+line = input()
+while not line == "end of race":
+    name = "".join(re.findall(p_name, line))
+    distance = sum([int(_) for _ in re.findall(p_distance, line)])
+    if name not in dict and name in participants:
+        dict[name] = distance
+    elif name in dict:
+        dict[name] += distance
+    line = input()
+
+num = 0
+for racer, dist in sorted(dict.items(), key=lambda x: -x[1]):
+    num += 1
+    print(f"{int2ordinal(num)} place: {racer}")
+    if 3 == num:
+        break
+
