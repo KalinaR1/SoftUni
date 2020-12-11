@@ -1,0 +1,10 @@
+import re
+
+n = int(input())
+p_name = r"@([A-Za-z]+)\|"
+p_age = r"#(\d+)\*"
+for num in range(n):
+    line = input()
+    name = "".join(re.findall(p_name, line))
+    age = "".join(re.findall(p_age, line))
+    print(f"{name} is {age} years old.")
