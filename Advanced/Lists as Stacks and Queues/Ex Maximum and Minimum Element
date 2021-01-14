@@ -1,0 +1,18 @@
+n = int(input())
+s = []
+for _ in range(n):
+    query = input()
+    if len(query.split(" ")) > 1:
+        num = int(query.split(" ")[1])
+        s.append(num)
+    else:
+        type = int(query)
+        if s:
+            if type == 2:
+                s.pop()
+            elif type == 3:
+                print(max(s))
+            elif type == 4:
+                print(min(s))
+
+print(", ".join([str(el) for el in reversed(s)]))
