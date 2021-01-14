@@ -1,4 +1,0 @@
-integers = input().split()
-
-for _ in range(len(integers)):
-    print(integers.pop(), end=" ")
