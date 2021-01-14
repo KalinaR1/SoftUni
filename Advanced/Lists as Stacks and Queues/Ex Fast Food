@@ -1,0 +1,22 @@
+from collections import deque
+
+quantity = int(input())
+
+orders = [int(_) for _ in input().split(" ")]
+q = deque(orders)
+
+while q:
+    if q[0] <= quantity:
+        quantity -= q[0]
+        q.popleft()
+    else:
+        break
+
+print(max(orders))
+result = ''
+if q:
+    for el in q:
+        result += str(el) + " "
+    print(f"Orders left: {result}")
+else:
+    print("Orders complete")
