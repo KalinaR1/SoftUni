@@ -1,0 +1,18 @@
+clothes = [int(_) for _ in input().split(" ")]
+capacity_per_rack = int(input())
+total_sum = 0
+racks = 0
+
+while clothes:
+    item = clothes.pop()
+    if total_sum == 0:
+        racks += 1
+    if total_sum + item > capacity_per_rack:
+        total_sum = item
+        racks += 1
+    else:
+        total_sum += item
+    if total_sum == capacity_per_rack:
+        total_sum = 0
+
+print(racks)
