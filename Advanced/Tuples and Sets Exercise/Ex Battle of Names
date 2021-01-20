@@ -1,0 +1,29 @@
+def input_to_list(num):
+    lines = []
+    for line in range(num):
+        lines.append(input())
+    return lines
+
+
+n = int(input())
+names = input_to_list(n)
+odd = set()
+even = set()
+line = 0
+for name in names:
+    line += 1
+    total_sum = sum(ord(char) for char in name) // line
+    if total_sum % 2 == 0:
+        even.add(total_sum)
+    else:
+        odd.add(total_sum)
+
+sum_odd = sum(odd)
+sum_even = sum(even)
+
+if sum_odd == sum_even:
+    print(", ".join(list([str(el) for el in odd.union(even)])))
+elif sum_odd > sum_even:
+    print(", ".join(list([str(el) for el in odd.difference(even)])))
+elif sum_even > sum_odd:
+    print(", ".join(list([str(el) for el in even.symmetric_difference(odd)])))
