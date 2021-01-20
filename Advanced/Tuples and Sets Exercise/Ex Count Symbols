@@ -1,0 +1,14 @@
+def print_result(elements):
+    for el, count in sorted(elements.items()):
+        print(f"{el}: {count} time/s")
+
+
+text = input()
+char_count = {}
+
+for char in text:
+    if char not in char_count:
+        char_count[char] = 0
+    char_count[char] += 1
+
+print_result(char_count)
