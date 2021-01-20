@@ -9,9 +9,7 @@ phonebook = {}
 
 command = input()
 while len(command) > 1:
-    data = command.split("-")
-    name = data[0]
-    phone = data[1]
+    name, phone = command.split("-")
     phonebook[name] = phone
     command = input()
 
