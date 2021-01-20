@@ -1,0 +1,25 @@
+def input_to_list(count):
+    lines = []
+    for line in range(count):
+        lines.append(input())
+    return lines
+
+
+phonebook = {}
+
+command = input()
+while len(command) > 1:
+    data = command.split("-")
+    name = data[0]
+    phone = data[1]
+    phonebook[name] = phone
+    command = input()
+
+n = int(command)
+
+search = input_to_list(n)
+for name in search:
+    if name in phonebook:
+        print(f"{name} -> {phonebook[name]}")
+    else:
+        print(f"Contact {name} does not exist.")
