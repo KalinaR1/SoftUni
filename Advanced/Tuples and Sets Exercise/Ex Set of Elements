@@ -1,0 +1,29 @@
+def input_to_list(num):
+    lines = []
+    for line in range(num):
+        lines.append(input())
+    return lines
+
+
+def print_result(names):
+    for name in names:
+        print(name)
+
+
+n = list(map(int, input().split()))
+first_set = n[0]
+second_set = n[1]
+
+first_values = list(set(input_to_list(first_set)))
+second_values = list(set(input_to_list(second_set)))
+both = first_values + second_values
+values_count = {}
+
+for value in both:
+    if value not in values_count:
+        values_count[value] = 0
+    values_count[value] += 1
+
+for value, count in values_count.items():
+    if count > 1:
+        print(value)
