@@ -1,0 +1,15 @@
+def input_to_list(count):
+    lines = []
+    for line in range(count):
+        lines += input().split()
+    return lines
+
+
+def print_result(els):
+    for el in els:
+        print(el)
+
+
+n = int(input())
+elements = set(input_to_list(n))
+print_result(elements)
