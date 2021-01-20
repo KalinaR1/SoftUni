@@ -1,3 +1,11 @@
+def iter(start, end):
+    for i in range(start, end + 1):
+        if i not in all:
+            all[i] = 0
+        all[i] += 1
+    return all
+
+
 n = int(input())
 max_intersection = []
 all = {}
@@ -7,26 +15,17 @@ max_length = 0
 for line in range(n):
     data = input().split("-")
     first_inter = data[0].split(",")
-    first_start = int(first_inter[0])
-    first_end = int(first_inter[1])
+    first_start, first_end = [int(el) for el in first_inter]
     second_inter = data[-1].split(",")
-    second_start = int(second_inter[0])
-    second_end = int(second_inter[1])
-    for inter in range(first_start, first_end + 1):
-        if inter not in all:
-            all[inter] = 0
-        all[inter] += 1
-    for inter in range(second_start, second_end + 1):
-        if inter not in all:
-            all[inter] = 0
-        all[inter] += 1
+    second_start, second_end = [int(el) for el in second_inter]
+    iter(first_start, first_end)
+    iter(second_start, second_end)
     for num, count in all.items():
         if count > 1:
             intersection.append(num)
     if len(intersection) > max_length:
         max_length = len(intersection)
         max_intersection = intersection
-
     all = {}
     intersection = []
 
