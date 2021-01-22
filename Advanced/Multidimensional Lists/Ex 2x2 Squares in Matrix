@@ -1,0 +1,27 @@
+def read_matrix():
+    matrix = []
+    for _ in range(rows):
+        matrix.append(input().split(" "))
+    return matrix
+
+
+def check_if_equal(row_index, columns_index, matrix):
+    current = matrix[row_index][columns_index]
+    next = matrix[row_index][columns_index + 1]
+    bottom_left = matrix[row_index + 1][columns_index]
+    bottom_right = matrix[row_index + 1][columns_index + 1]
+    if current == next == bottom_left == bottom_right:
+        return True
+    return False
+
+
+rows, columns = [int(el) for el in input().split(" ")]
+matrix = read_matrix()
+
+count = 0
+for row_index in range(rows - 1):
+    for columns_index in range(columns - 1):
+        if check_if_equal(row_index, columns_index, matrix):
+            count += 1
+
+print(count)
