@@ -1,0 +1,5 @@
+strings = input().split(" ")
+result = [w for w in strings if len(w) % 2 == 0]
+
+for r in result:
+    print(r)
