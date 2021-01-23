@@ -1,0 +1,33 @@
+def read_matrix():
+    n = int(input())
+    matrix = []
+    for row in range(n):
+        matrix.append([int(_) for _ in input().split(", ")])
+    return matrix
+
+
+def primary_diagonal(matrix):
+    primary_sum = 0
+    size = len(matrix)
+    primary = []
+    for i in range(size):
+        primary_sum += matrix[i][i]
+        primary.append(matrix[i][i])
+    return primary, primary_sum
+
+
+def secondary_diagonal(matrix):
+    secondary_sum = 0
+    size = len(matrix)
+    secondary = []
+    for i in range(size):
+        secondary_sum += matrix[i][size - i - 1]
+        secondary.append(matrix[i][size - i - 1])
+    return secondary, secondary_sum
+
+
+matrix = read_matrix()
+primary = primary_diagonal(matrix)
+secondary = secondary_diagonal(matrix)
+print(f"First diagonal: {', '.join([str(x) for x in primary[0]])}. Sum: {primary[1]}")
+print(f"Second diagonal: {', '.join([str(x) for x in secondary[0]])}. Sum: {secondary[1]}")
