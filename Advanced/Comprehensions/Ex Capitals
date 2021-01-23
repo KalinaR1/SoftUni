@@ -1,0 +1,9 @@
+countries = input().split(", ")
+capitals = input().split(", ")
+
+dict = {}
+for i in range(len(countries)):
+    dict[countries[i]] = capitals[i]
+
+for country, capital in dict.items():
+    print(f"{country} -> {capital}")
