@@ -1,0 +1,5 @@
+strings = input().split(", ")
+
+result = [f"{name} -> {len(name)}" for name in strings]
+
+print(", ".join(result))
