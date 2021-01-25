@@ -1,0 +1,3 @@
+def concatenate(*args):
+    result = [arg for arg in args]
+    return "".join(result)
