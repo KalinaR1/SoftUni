@@ -1,0 +1,22 @@
+def minimum(nums):
+    return min(nums)
+
+
+def maximum(nums):
+    return max(nums)
+
+
+def sum_of_all(nums):
+    total = 0
+    for n in nums:
+        total += n
+    return total
+
+
+numbers = [int(_) for _ in input().split()]
+
+print(f"The minimum number is {minimum(numbers)}")
+print(f"The maximum number is {maximum(numbers)}")
+print(f"The sum number is: {sum_of_all(numbers)}")
+
+
