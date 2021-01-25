@@ -1,0 +1,18 @@
+def negative(nums):
+    neg = [n for n in nums if n < 0]
+    return sum(neg)
+
+
+def positive(nums):
+    pos = [n for n in nums if n >= 0]
+    return sum(pos)
+
+
+numbers = [int(_) for _ in input().split()]
+
+print(negative(numbers))
+print(positive(numbers))
+if abs(negative(numbers)) > positive(numbers):
+    print("The negatives are stronger than the positives")
+else:
+    print("The positives are stronger than the negatives")
