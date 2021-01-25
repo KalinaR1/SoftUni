@@ -1,0 +1,7 @@
+def to_abs_lst(nums):
+    return [abs(float(el)) for el in nums]
+
+print(to_abs_lst(input().split()))
+
+
+# print([abs(float(el)) for el in input().split(" ")])
