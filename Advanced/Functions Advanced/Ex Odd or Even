@@ -1,0 +1,19 @@
+def odd(nums):
+    odd_lst = [x for x in nums if x % 2 == 1]
+    return sum(odd_lst) * len(nums)
+
+
+def even(nums):
+    even_lst = [x for x in nums if x % 2 == 0]
+    return sum(even_lst) * len(nums)
+
+
+command = input()
+
+numbers = [int(_) for _ in input().split()]
+
+if command == "Odd":
+    print(odd(numbers))
+elif command == "Even":
+    print(even(numbers))
+
