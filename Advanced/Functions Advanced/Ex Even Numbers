@@ -1,0 +1,8 @@
+def find_even_numbers(x):
+    return x % 2 == 0
+
+
+numbers = list(map(int, input().split()))
+
+result = list(filter(find_even_numbers, numbers))
+print(result)
