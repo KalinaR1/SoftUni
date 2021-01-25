@@ -1,0 +1,7 @@
+def to_round_lst(nums):
+    return [round(float(el)) for el in nums]
+
+
+print(to_round_lst(input().split()))
+
+# print([round(float(el)) for el in input().split(" ")])
