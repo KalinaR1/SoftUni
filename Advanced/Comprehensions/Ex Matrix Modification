@@ -1,0 +1,33 @@
+def read_matrix():
+    rows = int(input())
+    matrix = []
+    for r in range(rows):
+        matrix.append([int(x) for x in input().split()])
+    return matrix
+
+
+def print_result(matrix):
+    for el in matrix:
+        print(" ".join([str(_) for _ in el]))
+
+
+matrix = read_matrix()
+
+data = input()
+while not data == "END":
+    command, row, col, value = data.split()
+    row = int(row)
+    col = int(col)
+    value = int(value)
+    if row >= len(matrix) or row < 0 or col >= len(matrix) or col < 0:
+        print("Invalid coordinates")
+        data = input()
+        continue
+    if command == "Add":
+        matrix[row][col] += value
+    elif command == "Subtract":
+        matrix[row][col] -= value
+    data = input()
+
+
+print_result(matrix)
