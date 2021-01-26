@@ -3,5 +3,4 @@ def even_odd(*args):
     numbers = [int(_) for _ in args[:-1]]
     if command == "even":
         return [x for x in numbers if x % 2 == 0]
-    elif command == "odd":
-        return [x for x in numbers if x % 2 == 1]
+    return [x for x in numbers if x % 2 == 1]
