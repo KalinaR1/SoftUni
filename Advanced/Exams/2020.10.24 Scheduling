@@ -3,7 +3,6 @@ task_index = int(input())
 sorted_indexes = sorted(range(len(tasks_values)), key=lambda k: tasks_values[k])
 clock_cycles = 0
 
-
 for i in sorted_indexes:
     clock_cycles += tasks_values[i]
     if i == task_index:
