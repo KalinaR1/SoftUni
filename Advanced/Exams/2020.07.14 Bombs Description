@@ -1,0 +1,50 @@
+from collections import deque
+
+
+def bomb_checker(bombs, kind, effects, casings):
+    bombs[kind] += 1
+    effects.popleft()
+    casings.pop()
+
+
+effects = deque([int(_) for _ in input().split(",")])
+casings = [int(_) for _ in input().split(",")]
+bombs = {'Datura Bombs': 0, 'Cherry Bombs': 0, 'Smoke Decoy Bombs': 0}
+bomb_pouch = False
+i = 0
+while True:
+    if not effects or not casings:
+        break
+
+    mixed = effects[0] + casings[-1]
+    if mixed == 40:
+        bomb_checker(bombs, 'Datura Bombs', effects, casings)
+    elif mixed == 60:
+        bomb_checker(bombs, 'Cherry Bombs', effects, casings)
+    elif mixed == 120:
+        bomb_checker(bombs, 'Smoke Decoy Bombs', effects, casings)
+    else:
+        casings[-1] -= 5
+
+    if bombs['Datura Bombs'] >= 3 and bombs['Cherry Bombs'] >= 3 and bombs['Smoke Decoy Bombs'] >= 3:
+        bomb_pouch = True
+        break
+    i += 1
+
+if bomb_pouch:
+    print("Bene! You have successfully filled the bomb pouch!")
+else:
+    print("You don't have enough materials to fill the bomb pouch.")
+
+if len(effects) > 0:
+    print(f"Bomb Effects: {', '.join([str(el) for el in effects])}")
+else:
+    print("Bomb Effects: empty")
+
+if len(casings) > 0:
+    print(f"Bomb Casings: {', '.join([str(el) for el in casings])}")
+else:
+    print("Bomb Casings: empty")
+
+for bomb, count in sorted(bombs.items()):
+    print(f"{bomb}: {count}")
