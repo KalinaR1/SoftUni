@@ -1,0 +1,33 @@
+def list_manipulator(numbers, second_param, third_param, *others):
+    if second_param == 'add':
+        if len(others) > 1:
+            nums = [el for el in others]
+            if third_param == 'beginning':
+                for el in range(len(nums)):
+                    numbers.insert(el, nums[el])
+            else:
+                for el in range(len(nums)):
+                    numbers.append(nums[el])
+        else:
+            n = others[0]
+            if third_param == 'beginning':
+                numbers.insert(0, n)
+            else:
+                numbers.append(n)
+
+    elif second_param == "remove":
+        if others:
+            n = others[0]
+        if third_param == 'beginning':
+            if others:
+                for i in range(n):
+                    numbers.pop(0)
+            else:
+                numbers.pop(0)
+        else:
+            if others:
+                for i in range(n):
+                    numbers.pop()
+            else:
+                numbers.pop()
+    return numbers
