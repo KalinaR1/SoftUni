@@ -1,0 +1,11 @@
+def numbers_searching(*args):
+    numbers = sorted(args)
+    missing_number = [x for x in range(numbers[0], numbers[-1]+1) if x not in numbers]
+    duplicate_numbers = []
+    for i in range(len(numbers)):
+        k = i + 1
+        for j in range(k, len(numbers)):
+            if numbers[i] == numbers[j] and numbers[i] not in duplicate_numbers:
+                duplicate_numbers.append(numbers[i])
+    missing_number.append(duplicate_numbers)
+    return missing_number
