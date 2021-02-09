@@ -1,0 +1,66 @@
+import re
+
+
+def read_matrix(size):
+    matrix = []
+    for r in range(size):
+        matrix.append([0] * size)
+    return matrix
+
+
+def positioning(bombs):
+    matrix = read_matrix(size_matrix)
+    for bomb in range(bombs):
+        data = input()
+        digits = re.findall(r"[0-9]+", data)
+        row = int(digits[0])
+        col = int(digits[1])
+        matrix[row][col] = "*"
+    return matrix
+
+
+size_matrix = int(input())
+bombs = int(input())
+bombs_positioned = positioning(bombs)
+
+count = 0
+for row in range(size_matrix):
+    for col in range(size_matrix):
+
+        if bombs_positioned[row][col] == 0:
+            if row + 1 in range(0, size_matrix):
+                down = bombs_positioned[row + 1][col]
+                if down == "*":
+                    count += 1
+            if row - 1 in range(size_matrix):
+                up = bombs_positioned[row - 1][col]
+                if up == "*":
+                    count += 1
+            if col + 1 in range(size_matrix):
+                left = bombs_positioned[row][col + 1]
+                if left == "*":
+                    count += 1
+            if col - 1 in range(size_matrix):
+                right = bombs_positioned[row][col - 1]
+                if right == "*":
+                    count += 1
+            if row - 1 in range(size_matrix) and col - 1 in range(size_matrix):
+                left_up = bombs_positioned[row - 1][col - 1]
+                if left_up == "*":
+                    count += 1
+            if row + 1 in range(size_matrix) and col - 1 in range(size_matrix):
+                left_down = bombs_positioned[row + 1][col - 1]
+                if left_down == "*":
+                    count += 1
+            if row - 1 in range(size_matrix) and col + 1 in range(size_matrix):
+                right_up = bombs_positioned[row - 1][col + 1]
+                if right_up == "*":
+                    count += 1
+            if row + 1 in range(size_matrix) and col + 1 in range(size_matrix):
+                right_down = bombs_positioned[row + 1][col + 1]
+                if right_down == "*":
+                    count += 1
+            bombs_positioned[row][col] = count
+            count = 0
+
+print(*[" ".join([str(_) for _ in r]) for r in bombs_positioned], sep="\n")
