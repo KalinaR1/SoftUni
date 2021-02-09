@@ -1,0 +1,70 @@
+def read_matrix():
+    size_matrix = int(input())
+    matrix = []
+    for row in range(size_matrix):
+        matrix.append(list(input()))
+    return matrix
+
+
+second_burrow = False
+matrix = read_matrix()
+snake_position = []
+
+for r in range(len(matrix)):
+    for c in range(len(matrix)):
+        if matrix[r][c] == "S":
+            snake_position.append(r)
+            snake_position.append(c)
+
+food = 0
+row = snake_position[0]
+col = snake_position[1]
+command = input()
+while command:
+
+    matrix[row][col] = "."
+    previous_position = matrix[row][col]
+    if command == "up":
+        row -= 1
+
+    elif command == "down":
+        row += 1
+
+    elif command == "left":
+        col -= 1
+
+    elif command == "right":
+        col += 1
+
+    if row not in range(0, len(matrix)) or col not in range(0, len(matrix)):
+        print("Game over!")
+        break
+
+    current_position = matrix[row][col]
+
+    if current_position == "*":
+        food += 1
+
+    elif current_position == "B":
+        matrix[row][col] = "."
+        for r in range(row + 1, len(matrix)):
+            for c in range(0, len(matrix)):
+                if matrix[r][c] == "B":
+                    row = r
+                    col = c
+                    second_burrow = True
+                    break
+            if second_burrow:
+                break
+
+    matrix[row][col] = "S"
+
+    if food >= 10:
+        print("You won! You fed the snake.")
+        break
+
+    command = input()
+
+
+print(f"Food eaten: {food}")
+print(*["".join(r) for r in matrix], sep="\n")
