@@ -1,0 +1,56 @@
+def read_matrix():
+    matrix = []
+    for row_index in range(8):
+        matrix.append(input().split())
+    return matrix
+
+
+def find_king():
+    for r in range(8):
+        for c in range(8):
+            if matrix[r][c] == "K":
+                return r, c
+
+
+def is_valid(number, size):
+    return 0 <= number < size
+
+
+directions = {
+    'up': (-1, 0),
+    'down': (1, 0),
+    'right': (0, 1),
+    'left': (0, -1),
+    'up_left': (-1, -1),
+    'down_left': (1, -1),
+    'up_right': (-1, 1),
+    'down_right': (1, 1),
+}
+
+matrix = read_matrix()
+row = find_king()[0]
+col = find_king()[1]
+
+queens_positions = []
+for direction in directions:
+    row = find_king()[0]
+    col = find_king()[1]
+    row_changes = directions[direction][0]
+    col_changes = directions[direction][1]
+
+    if not is_valid(row + row_changes, 8) or not is_valid(col + col_changes, 8):
+        continue
+
+    while is_valid(row, 8) and is_valid(col, 8):
+        current_cell = matrix[row][col]
+        if current_cell == "Q":
+            queens_positions.append([row, col])
+            break
+
+        row += row_changes
+        col += col_changes
+
+if queens_positions:
+    print(*[pos for pos in queens_positions], sep="\n")
+else:
+    print("The king is safe!")
