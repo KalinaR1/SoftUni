@@ -1,0 +1,12 @@
+n = int(input())
+draw_rhombus(n)
+draw_triangle(n)
+
+
+def draw_rhombus(n):
+    for x in range(1, n + 1):
+        spaces = (n - x) * ' '
+        print(spaces + ' '.join('*' * x))
+    for y in range(n - 1, 0, -1):
+        spaces = (n - y) * ' '
+        print(spaces + ' '.join('*' * y))
