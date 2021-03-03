@@ -1,0 +1,16 @@
+class Cup:
+    def __init__(self, size, quantity):
+        self.size = size
+        self.quantity = quantity
+
+    def get_free_size(self):
+        return self.size - self.quantity
+
+    def fill(self, mls):
+        if self.get_free_size() < mls:
+            return
+
+        self.quantity += mls
+
+    def status(self):
+        return self.get_free_size()
