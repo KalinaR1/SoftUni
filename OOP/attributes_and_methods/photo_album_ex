@@ -1,0 +1,27 @@
+class PhotoAlbum:
+    def __init__(self, pages):
+        self.pages = pages
+        self.photos = [[] for p in range(self.pages)]
+
+    @classmethod
+    def from_photos_count(cls, photos_count):
+        return cls(photos_count // 4)
+
+    def add_photo(self, label):
+        for page in range(0, self.pages):
+            for slot in range(0, 4):
+                if len(self.photos[page]) < 4:
+                    self.photos[page].append(label)
+                    return f"{label} photo added successfully on page {page + 1} slot {slot + 1}"
+                else:
+                    continue
+        return "No more free spots"
+
+    def display(self):
+        result = ''
+        result += f"-----------\n"
+        for page in self.photos:
+            photos = [str([]) for p in page if p]
+            result += f"{' '.join(photos)}\n"
+            result += f"-----------\n"
+        return result
